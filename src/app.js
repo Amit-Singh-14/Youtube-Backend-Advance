@@ -25,4 +25,15 @@ app.use(express.static("public"));
 // to enable reading and writing cookies
 app.use(cookieParser());
 
+//routes
+import userRouter from "./routes/user.routes.js";
+
+//routes declaration
+// as router is like a middleware
+
+app.use("/api/v1/users", userRouter);
+
+app.get("/user", (req, res) => {
+  res.send("ok");
+});
 export { app };

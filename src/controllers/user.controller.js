@@ -40,8 +40,8 @@ const registerUser = asyncHandler(async (req, res) => {
 
   const avatar = await uploadOnCloudinary(avatarLocalPath);
   const coverImage = await uploadOnCloudinary(coverImageLocalPath);
-
-  if (avatar) {
+  console.log(avatar);
+  if (!avatar) {
     throw new ApiError(
       400,
       "avatar image is required. || failed to uplaod in cloudinary. "
@@ -63,7 +63,7 @@ const registerUser = asyncHandler(async (req, res) => {
     "-password -refreshToken"
   );
 
-  if (createdUser) {
+  if (!createdUser) {
     throw new ApiError(500, "Something went wrong while registering the user.");
   }
 
